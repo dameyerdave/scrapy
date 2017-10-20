@@ -1,0 +1,87 @@
+{
+	"rss": 
+	[
+		{
+			"urls": 
+			[
+				"https://www.blick.ch/news/rss",
+				"https://www.blick.ch/news/schweiz/rss.xml",
+				"https://www.blick.ch/news/schweiz/basel/rss.xml",
+				"https://www.blick.ch/news/schweiz/bern/rss.xml",
+				"https://www.blick.ch/news/schweiz/graubuenden/rss.xml",
+				"https://www.blick.ch/news/schweiz/mittelland/rss.xml",
+				"https://www.blick.ch/news/schweiz/ostschweiz/rss.xml",
+				"https://www.blick.ch/news/schweiz/tessin/rss.xml",
+				"https://www.blick.ch/news/schweiz/westschweiz/rss.xml",
+				"https://www.blick.ch/news/schweiz/zentralschweiz/rss.xml",
+				"https://www.blick.ch/news/schweiz/zuerich/rss.xml",
+				"https://www.blick.ch/news/ausland/rss.xml",
+				"https://www.blick.ch/news/wirtschaft/rss.xml",
+				"https://www.blick.ch/sport/rss.xml",
+				"https://www.blick.ch/sport/fussball/rss.xml",
+				"https://www.blick.ch/sport/eishockey/rss.xml",
+				"https://www.blick.ch/sport/ski/rss.xml",
+				"https://www.blick.ch/sport/tennis/rss.xml",
+				"https://www.blick.ch/sport/formel1/rss.xml",
+				"https://www.blick.ch/sport/rad/rss.xml",
+				"https://www.blick.ch/people-tv/rss.xml",
+				"https://www.blick.ch/life/rss.xml",
+				"https://www.blick.ch/life/mode/rss.xml",
+				"https://www.blick.ch/life/digital/rss.xml"
+			],
+			"contentCss": "div#bodytext p *::text",
+			"enabled": true
+		},
+		{
+			"urls": 
+			[
+				"http://api.20min.ch/rss/view/1",
+				"http://api.20min.ch/rss/view/63",
+				"http://api.20min.ch/rss/view/129",
+				"http://api.20min.ch/rss/view/65",
+				"http://api.20min.ch/rss/view/439",
+				"http://api.20min.ch/rss/view/441",
+				"http://api.20min.ch/rss/view/443",
+				"http://api.20min.ch/rss/view/447",
+				"http://api.20min.ch/rss/view/449",
+				"http://api.20min.ch/rss/view/131",
+				"http://api.20min.ch/rss/view/89",
+				"http://api.20min.ch/rss/view/67",
+				"http://api.20min.ch/rss/view/69",
+				"http://api.20min.ch/rss/view/71",
+				"http://api.20min.ch/rss/view/133"
+			],
+			"contentCss": "div.story_text p *::text",
+			"enabled": true
+		},
+		{
+			"urls": 
+			[
+				"https://www.nzz.ch/startseite.rss",
+				"http://www.nzz.ch/startseite.rss",
+				"http://www.nzz.ch/international.rss",
+				"http://www.nzz.ch/schweiz.rss",
+				"http://www.nzz.ch/wirtschaft.rss",
+				"http://www.nzz.ch/finanzen.rss",
+				"http://www.nzz.ch/feuilleton.rss",
+				"http://www.nzz.ch/sport.rss",
+				"http://www.nzz.ch/zuerich.rss",
+				"http://www.nzz.ch/panorama.rss",
+				"http://www.nzz.ch/wissenschaft.rss",
+				"http://www.nzz.ch/mobilitaet/auto-mobil.rss",
+				"http://www.nzz.ch/mehr/digital.rss",
+				"http://www.nzz.ch/lebensart.rss"
+			],
+			"contentCss": "p[itemprop='articleBody'] *::text",
+			"enabled": true
+		},
+		{
+			"urls": 
+			[
+				"https://www.newsd.admin.ch/newsd/feeds/rss?lang=de&org-nr=1&topic=&keyword=&offer-nr=&catalogueElement=&kind=M,R&start_date=2000-01-01&end_date="
+			],
+			"contentCss": "div.mod-nsbnewsdetails *::text",
+			"enabled": false
+		}
+	]
+}
