@@ -18,4 +18,4 @@ class ArticleParser(BaseParser):
             yield item
         else:
             with open('nocontent.log', 'a') as f:
-                f.write(item.link + '\n')
+                f.write(item.reference + '\n')

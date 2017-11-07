@@ -90,13 +90,16 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 ITEM_PIPELINES = {
-    'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 500
+    'rss.pipelines.LogstashPipeline': 300
+    #'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 500
 }
+LOGSTASH_HOST='localhost'
+LOGSTASH_PORT=10000
 
-ELASTICSEARCH_SERVERS = ['localhost:9200']
+ELASTICSEARCH_SERVERS = ['http://elastic:changeme@localhost:9200']
 ELASTICSEARCH_INDEX = 'news'
 ELASTICSEARCH_TYPE = 'article'
-ELASTICSEARCH_UNIQ_KEY = 'link'  
+ELASTICSEARCH_UNIQ_KEY = 'reference'  
 ELASTICSEARCH_INDEX_SUFFIX_TYPE = 'field'
 ELASTICSEARCH_INDEX_SUFFIX_KEY = 'language'
 #ELASTICSEARCH_INDEX_DATE_FORMAT = '%Y-%m'

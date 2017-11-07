@@ -32,11 +32,11 @@ class RssSpider(scrapy.Spider):
         domain = response.meta['domain']
         for _item in response.css('item'):
             item = ObjDict();
-            item.link = _item.css('link::text').extract_first()
-            if domain == self.get_domain(item.link):
-                result = self.conn.execute("SELECT COUNT(*) FROM store WHERE hash='"+item.link+"'").fetchone()
+            item.reference = _item.css('link::text').extract_first()
+            if domain == self.get_domain(item.reference):
+                result = self.conn.execute("SELECT COUNT(*) FROM store WHERE hash='"+item.reference+"'").fetchone()
                 if result[0] == 0:
-                    self.conn.execute("INSERT INTO store VALUES ('"+item.link+"')")
+                    self.conn.execute("INSERT INTO store VALUES ('"+item.reference+"')")
                     item.title = _item.css('title::text').extract_first()
                     item.abstract = _item.css('description::text').extract_first()
                     timestamp = parse(_item.css('pubDate::text').extract_first()).strftime('%Y-%m-%d %H:%M:%S')
@@ -45,7 +45,7 @@ class RssSpider(scrapy.Spider):
                     item.domain = domain
 
                     parser = ArticleParser(contentCss=response.meta['contentCss'])
-                    request = scrapy.Request(item.link, parser.process)
+                    request = scrapy.Request(item.reference, parser.process)
                     request.meta['item'] = item
                     yield request
 
