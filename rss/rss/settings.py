@@ -89,11 +89,21 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-ITEM_PIPELINES = {
-    'rss.pipelines.LogstashPipeline': 300
+#ITEM_PIPELINES = {
+    #'rss.pipelines.LogstashPipeline': 300
     #'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 500
+#}
+
+# Store scraped item in rabbitmq for post-processing.
+ITEM_PIPELINES = {
+    'rss.pipelines.MessageQueuePipeline': 300
 }
-LOGSTASH_HOST='localhost'
+
+RABBITMQ_HOST = 'voc.anovum.pro'
+RABBITMQ_PORT = 5672
+RABBITMQ_QUEUE = 'test'
+
+LOGSTASH_HOST='nuc1'
 LOGSTASH_PORT=10000
 
 ELASTICSEARCH_SERVERS = ['http://elastic:changeme@localhost:9200']

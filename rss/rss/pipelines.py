@@ -8,6 +8,7 @@
 import socket
 import json
 import sys
+import pika
 
 class RssPipeline(object):
     def process_item(self, item, spider):
@@ -36,3 +37,30 @@ class LogstashPipeline(object):
         self.sock.close()
         return item
 
+class MessageQueuePipeline(object):
+    def __init__(self, rabbitmq_host, rabbitmq_port, rabbitmq_queue):
+        self.rabbitmq_host = rabbitmq_host
+        self.rabbitmq_port = rabbitmq_port
+        self.rabbitmq_queue = rabbitmq_queue
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            rabbitmq_host=crawler.settings.get('RABBITMQ_HOST'),
+            rabbitmq_port=crawler.settings.get('RABBITMQ_PORT'),
+            rabbitmq_queue=crawler.settings.get('RABBITMQ_QUEUE'),
+        )
+
+    def process_item(self, item, spider):
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(
+            host = self.rabbitmq_host))
+        self.channel = self.connection.channel()
+
+        self.channel.queue_declare(queue=self.rabbitmq_queue, durable=True)
+
+        self.channel.basic_publish(
+            exchange = '',
+            routing_key = self.rabbitmq_queue,
+            body = json.dumps(dict(item)) + "\n")
+        self.connection.close()
+        return item

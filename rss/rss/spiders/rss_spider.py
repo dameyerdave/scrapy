@@ -23,13 +23,16 @@ class RssSpider(scrapy.Spider):
             if rss['enabled']:
                 for url in rss['urls']:
                     domain = self.get_domain(url)
+                    filename = self.get_filenam(url)
                     request = scrapy.Request(url, self.parse)
                     request.meta['domain'] = domain
+                    request.meta['filename'] = filename
                     request.meta['contentCss'] = rss['contentCss']
                     yield request
 
     def parse(self, response):
         domain = response.meta['domain']
+        filename = response.meta['filename']
         for _item in response.css('item'):
             item = ObjDict();
             item.reference = _item.css('link::text').extract_first()
@@ -40,9 +43,11 @@ class RssSpider(scrapy.Spider):
                     item.title = _item.css('title::text').extract_first()
                     item.abstract = _item.css('description::text').extract_first()
                     timestamp = parse(_item.css('pubDate::text').extract_first()).strftime('%Y-%m-%d %H:%M:%S')
-                    item['@timestamp'] = timestamp
+                    item['timestamp'] = timestamp
                     item.language = detect(item.abstract)
-                    item.domain = domain
+                    item.source = domain
+                    item.filename = filename
+                    item.contentType = 'text/html'
 
                     parser = ArticleParser(contentCss=response.meta['contentCss'])
                     request = scrapy.Request(item.reference, parser.process)
@@ -53,3 +58,6 @@ class RssSpider(scrapy.Spider):
         url = urllib.util.parse_url(_url)
         parts = url.hostname.split('.')
         return parts[-2]
+
+    def get_filenam(self, _url):
+        return _url.split('/')[-1]

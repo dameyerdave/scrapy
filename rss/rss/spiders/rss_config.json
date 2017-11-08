@@ -30,7 +30,7 @@
 				"https://www.blick.ch/life/digital/rss.xml"
 			],
 			"contentCss": "div#bodytext p *::text",
-			"enabled": true
+			"enabled": false
 		},
 		{
 			"urls": 
@@ -52,7 +52,7 @@
 				"http://api.20min.ch/rss/view/133"
 			],
 			"contentCss": "div.story_text p *::text",
-			"enabled": true
+			"enabled": false
 		},
 		{
 			"urls": 
@@ -73,7 +73,7 @@
 				"http://www.nzz.ch/lebensart.rss"
 			],
 			"contentCss": "p[itemprop='articleBody'] *::text",
-			"enabled": true
+			"enabled": false
 		},
 		{
 			"urls":
@@ -81,7 +81,7 @@
 				"https://insideparadeplatz.ch/feed/"
 			],
 			"contentCss": "div[itemprop='mainContentOfPage'] p *::text",
-			"enabled": true
+			"enabled": false
 
 		},
 		{
@@ -91,6 +91,27 @@
 			],
 			"contentCss": "div.mod-nsbnewsdetails *::text",
 			"enabled": false
+		},
+		{
+			"urls":
+			[
+				"https://threatpost.com/feed",
+				"https://threatpost.com/category/cloud-security/feed",
+				"https://threatpost.com/category/critical-infrastructure/feed",
+				"https://threatpost.com/category/cryptography/feed",
+				"https://threatpost.com/category/government/feed",
+				"https://threatpost.com/category/hacks/feed",
+				"https://threatpost.com/category/iot/feed",
+				"https://threatpost.com/category/malware/feed",
+				"https://threatpost.com/category/mobile-security/feed",
+				"https://threatpost.com/category/privacy/feed",
+				"https://threatpost.com/category/vulnerabilities/feed",
+				"https://threatpost.com/category/web-security/feed",
+				"https://threatpost.com/author/michael/feed/",
+				"https://threatpost.com/author/thomas/feed/"
+			],
+			"contentCss": "div[itemprop='articleBody'] p *::text",
+			"enabled": true
 		}
 	]
 }

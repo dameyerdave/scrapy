@@ -6,6 +6,7 @@ class ArticleParser(BaseParser):
 
     def parse(self, response):
         item = response.meta['item'];
+        item.type = 'article';
         content = response.css(self.contentCss).extract()
         if len(content) > 10:
             for cp in content:
